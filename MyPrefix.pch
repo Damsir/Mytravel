@@ -1,0 +1,110 @@
+//
+//  MyPrefix.pch
+//  Travelfun
+//
+//  Created by 吴定如 on 15/11/27.
+//  Copyright (c) 2015年 Dam. All rights reserved.
+//
+
+#ifndef Travelfun_MyPrefix_pch
+#define Travelfun_MyPrefix_pch
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#define HTTP_HOST @"http://10.0.8.8/sns"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+
+//加载提示框
+#import "UIView+ProgressView.h"
+#import "AFNetworking.h"//网络请求
+#import "UIImageView+AFNetworking.h"//加载网络图片(imageView)
+#import "UIButton+AFNetworking.h"//加载网络图片(按钮)
+#import "MJRefresh.h"//上拉刷新,下拉加载更多
+#import "MJExtension.h"//MJ模型解析
+#import "UMSocial.h"//分享三方库
+#import "DBManager.h"//数据库
+
+#pragma mark -- View里面按钮回调事件
+typedef void(^selectedBlock)(NSInteger index);
+
+#pragma mark -- 游趣首页
+//推荐
+#define MCRECOMMEND_API @"http://open.qyer.com/qyer/recommands/entry?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=22.53817959930097&lon=113.9401406127727&page=1&track_app_channel=App%2520Store&track_app_version=6.4&track_device_info=iPhone5%2C3&track_deviceid=F22C25A1-139E-4878-AAA8-0D2D26FFB021&track_os=ios%25208.4&v=1"
+
+//热门游记列表 GET apikey:32d8ea3372029f92c5268aaae8d41157
+#define HOTVISIT_API @"http://apis.baidu.com/qunartravel/travellist/travellist?query=10&page=%d"
+
+
+//1.折扣
+#define ZHEKOUURLF @"http://open.qyer.com/lastminute/get_lastminute_list?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&v=1&track_user_id=&track_deviceid=E57D6014-1D9F-437C-B9E5-17CF697370FA&track_app_version=5.4.4&track_app_channel=App%20Store&track_device_info=iPhone7,1&track_os=ios%208.1&lat=40.033568&lon=116.358971&app_installtime=1421832230&page_size=20"
+//&is_show_pay=1&
+#define ZHEKOUURLS @"country_id=0&continent_id=0&max_id=0&times=&product_type=0"
+//2.景点 GET apikey:32d8ea3372029f92c5268aaae8d41157
+#define MCSpot_API @"http://apis.baidu.com/apistore/attractions/spot"
+//@"http://apis.baidu.com/apistore/qunaerticket/querydetail"
+
+//3.带你玩 GET
+#define MCENJOY_API @"http://api.breadtrip.com/hunter/products/more/?city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82&lat=38.88261529147517&lng=121.5393594597658&sign=98212ebb848da0cad4e80919b1cadeda&start="
+//4.精选游记 GET
+#define MCPRACTICE_API @"http://api.breadtrip.com/v2/new_trip/spot/hot/list/?start=%d"
+//4.1 游记详情: 传入参数spot_id
+#define MCPRACTICEDETAIL_API @"http://api.breadtrip.com/v2/new_trip/spot/?spot_id="
+
+
+#pragma mark -- 视频分享
+//精选视频 POST
+#define MCSPECIALVIDEO_API @"http://i.ys7.com/vod/api/video/premium"
+/*参数:
+ clientNo=ezvizsports
+ &clientType=11
+ &clientVersion	=2.1.1.20150918
+ &netType=2
+ &osVersion=9.0.1
+ &pageSize=20
+ &pageStart=0
+ */
+
+//人气视频 POST
+#define MCTOPICVIDEO_API @"http://i.ys7.com/vod/api/video/playlists"
+/*参数:
+ category =0
+ clientNo =ezvizsports
+ clientType=11
+ clientVersion=2.1.1.20150918
+ createtime=0
+ hot=0
+ netType=2
+ orderBy=3
+ osVersion=9.0.1
+ pageSize=20
+ pageStart=0
+ subCategory=24
+ */
+
+#pragma mark -- 目的地
+
+//1.目的地主页(国家及城市) GET
+#define MCDESTINATION_API @"http://api.haiwan.com/v2/destination/?version=3.2&deviceNo=70669E9C-AB7E-4D56-827C-44AF6DDF1AF1"
+//2.城市的景点列表 GET
+//参数:locationId(countryId) : 140
+#define MCCITYSPOTLIST_API @"http://api.haiwan.com/search/tourbyconditions?pageNo=%d&cityId=0&pageSize=10&themeId=0&countryId=%@&version=3.4&continentId=0&orderType=0&deviceNo=70669E9C-AB7E-4D56-827C-44AF6DDF1AF1"
+//3 景点详情 GET
+//参数:tour_id
+#define MCTICKETDETAIL_API @"http://api.haiwan.com/tourDetail/%@?hwToken=a4HOPS0kDZm5EFb1h7sig8h1P+ITXsS8&version=3.4&deviceNo=70669E9C-AB7E-4D56-827C-44AF6DDF1AF1"
+
+
+//抽屉--天气查询
+#define MCWEATHER_API @"http://apis.baidu.com/apistore/weatherservice/cityname"
+
+
+
+//热门
+//#define FHOTVISIT_API @"http://open.qyer.com/qyer/recommands/trip?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=10&lat=22.53817959930097&lon=113.9401406127727"
+// &page=1&
+//#define SHOTVISIT_API @"track_app_channel=App%2520Store&track_app_version=6.4&track_device_info=iPhone5%2C3&track_deviceid=F22C25A1-139E-4878-AAA8-0D2D26FFB021&track_os=ios%25208.4&type=index&v=1"
+
+#endif
