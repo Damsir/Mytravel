@@ -254,10 +254,10 @@
 -(void)initNavigationBarTitle:(NSString *)title
 {
     UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-    lab.textColor = [UIColor whiteColor];
-    lab.font = [UIFont boldSystemFontOfSize:18];
+    lab.textColor     = [UIColor whiteColor];
+    lab.font          = [UIFont boldSystemFontOfSize:18];
     lab.textAlignment = NSTextAlignmentCenter;
-    lab.text = title;
+    lab.text          = title;
     
     self.navigationItem.titleView = lab;
 }

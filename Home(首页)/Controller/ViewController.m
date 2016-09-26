@@ -58,6 +58,9 @@
     [self createUI];
     [self createSearchBar];
     
+    //在向上滑动的时候 导航栏(隐藏)
+    self.navigationController.hidesBarsOnSwipe = YES;
+    
 }
 #pragma mark--加载数据
 //重写父类的下拉刷新
